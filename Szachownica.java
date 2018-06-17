@@ -59,7 +59,7 @@ public class Szachownica
             System.exit(0);
         }
 
-        int width, height, quantityHorizontal, quantityVertical; //szerokosc, wysokosc, ilość w poziomie, ilość w pionie
+        int width, height, quantityHorizontal, quantityVertical; //szerokosc kafelka, wysokosc kafelka, ilość w poziomie, ilość w pionie
         char white, black;
 
         width = parserInt(tabString[0]);
@@ -73,11 +73,16 @@ public class Szachownica
         System.out.println(width + " - szerokosc\n" + height + " - wysokosc\n" + quantityHorizontal + "-ilosc w poziomie\n"  + quantityVertical + "-ilosc w poziomie");
         System.out.println(width + " " + height + " " + quantityHorizontal + " " + quantityVertical + " " + white + " " + black);
 
-        /*String verse = "";
+        String whiteTile = "";
+        String blackTile = "";
         for (int i = 0; i < width; i++)
         {
-            verse += "*";
+            whiteTile += white;
+            blackTile += black;
         }
+
+        String verse = "";
+        for (int i = 0; i < quantityHorizontal; i++)
 
         if (angle == 0 || height == 1) //prostokat
         {
@@ -119,9 +124,7 @@ public class Szachownica
                     verse = verse.substring(abs(angle));
                 }
                 //System.out.println(verse + "\n"); //ostatnia linijka poza petla bo ze znakiem konca linii
-                */
-            }
-        }
+
     }
 }
 
@@ -132,4 +135,5 @@ szerokosc      - width
 wysokosc       - height
 kąt nachylenia - slope angle
 wiersz         - verse
+kafel(ek)       - tile
 */
