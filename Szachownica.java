@@ -43,7 +43,7 @@ public class Szachownica
 
     public static void main (String[] args)
     {
-        System.out.println ("Podaj dlugosci bokow rownolegloboku i kat: ");
+        System.out.println ("Podaj parametry szachownicy: \nszerokosc i wysokosc kafelka, ilosc kafelkow w poziomie i pionie oraz pojedynczy znak bialego i czarnego kafelka");
         Scanner scanner = new Scanner(System.in);
         String str = scanner.nextLine();
         System.out.println("wczytano: " + str + ".");
@@ -70,7 +70,7 @@ public class Szachownica
         black = parserChar(tabString[5]);
 
         //---------------------------------------------------------------klasa szachownica
-        System.out.println(width + " - szerokosc\n" + height + " - wysokosc\n" + quantityHorizontal + "-ilosc w poziomie\n"  + quantityVertical + "-ilosc w poziomie");
+        System.out.println(width + " - szerokosc kafelka\n" + height + " - wysokosc kafelka\n" + quantityHorizontal + "-ilosc w poziomie\n"  + quantityVertical + "-ilosc w pionie");
         System.out.println(width + " " + height + " " + quantityHorizontal + " " + quantityVertical + " " + white + " " + black);
 
         String whiteTile = "";
@@ -81,50 +81,50 @@ public class Szachownica
             blackTile += black;
         }
 
-        String verse = "";
+        String verseFromWhite = "";
         for (int i = 0; i < quantityHorizontal; i++)
-
-        if (angle == 0 || height == 1) //prostokat
         {
-            for (int i = 0; i < height - 1; i++)
+            if (i % 2 == 0)
             {
-                System.out.println(verse);
+                verseFromWhite += whiteTile;
             }
-            System.out.println(verse + "\n"); //ostatnia linijka poza petla bo ze znakiem konca linii
+            if (i % 2 == 1)
+            {
+                verseFromWhite += blackTile;
+            }
         }
-        else //rownoleglobok
+        String verseFromBlack = "";
+        for (int i = 0; i < quantityHorizontal; i++)
         {
-            String space = "";
-            for (int i = 0; i < abs(angle); i++)
+            if (i % 2 == 1)
             {
-                space += " ";
+                verseFromBlack += whiteTile;
             }
-
-            if (angle > 0)
+            else
             {
-                for (int i = 0; i < height - 1; i++)
-                {
-                    System.out.println(verse);
-                    verse = space + verse;
-                }
-                System.out.println(verse + "\n"); //ostatnia linijka poza petla bo ze znakiem konca linii
+                verseFromBlack += blackTile;
             }
-            else //angle < 0
+        }
+
+        String szachownica = "";
+        for (int i = 0; i < quantityVertical; i++)
+        {
+            if (i % 2 == 0)
             {
-                String allSpace = space;
-                for (int i = 0; i < height - 2; i++)
+                for (int j = 0; j < height; j++)
                 {
-                    allSpace += space;
+                    szachownica += verseFromWhite + "\n";
                 }
-
-                verse = allSpace + verse;
-                for (int i = 0; i < height; i++)
+            }
+            else
+            {
+                for (int j = 0; j < height; j++)
                 {
-                    System.out.println(verse);
-                    verse = verse.substring(abs(angle));
+                    szachownica += verseFromBlack + "\n";
                 }
-                //System.out.println(verse + "\n"); //ostatnia linijka poza petla bo ze znakiem konca linii
-
+            }
+        }
+        System.out.println("szachownica: \n" + szachownica);
     }
 }
 
