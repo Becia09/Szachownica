@@ -21,6 +21,26 @@ public class Szachownica
 
         return result;
     }
+
+    public static char parserChar(String character)
+    {
+        if (character.length() != 1)
+        {
+            System.out.println("za dużo lub za mało znaków na kafelek");
+            System.exit(0);
+        }
+        char result = ' ';
+
+        try {
+            result = character.charAt(0);
+        } catch(NumberFormatException e) {
+            System.out.println ("Wyjątek");
+            System.exit(0);
+        }
+
+        return result;
+    }
+
     public static void main (String[] args)
     {
         System.out.println ("Podaj dlugosci bokow rownolegloboku i kat: ");
@@ -46,12 +66,14 @@ public class Szachownica
         height = parserInt(tabString[1]);
         quantityHorizontal = parserInt(tabString[2]);
         quantityVertical = parserInt(tabString[3]);
+        white = parserChar(tabString[4]);
+        black = parserChar(tabString[5]);
 
         //---------------------------------------------------------------klasa szachownica
-        System.out.println(width + " - szerokosc\n" + height + " - wysokosc");
-        System.out.println(width + " " + height + " " + angle);
+        System.out.println(width + " - szerokosc\n" + height + " - wysokosc\n" + quantityHorizontal + "-ilosc w poziomie\n"  + quantityVertical + "-ilosc w poziomie");
+        System.out.println(width + " " + height + " " + quantityHorizontal + " " + quantityVertical + " " + white + " " + black);
 
-        String verse = "";
+        /*String verse = "";
         for (int i = 0; i < width; i++)
         {
             verse += "*";
@@ -97,6 +119,7 @@ public class Szachownica
                     verse = verse.substring(abs(angle));
                 }
                 //System.out.println(verse + "\n"); //ostatnia linijka poza petla bo ze znakiem konca linii
+                */
             }
         }
     }
